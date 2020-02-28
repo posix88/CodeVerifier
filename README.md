@@ -1,3 +1,3 @@
 # CodeVerifier
 
-A description of this package.
+An high customizable and fast verification code view, written in SwiftUI.
