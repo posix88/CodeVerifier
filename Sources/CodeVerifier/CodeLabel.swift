@@ -19,14 +19,14 @@ public struct CodeLabel: View {
     var errorLineColor: Color = .red
     
     var normalTextColor: Color = .black
-    var errorTextColor: Color = .red
+    var errorTextColor: Color = .black
     
     private var lineColor: Color {
         error ? errorLineColor : normalLineColor
     }
     
     private var textColor: Color {
-        error ? errorLineColor : normalLineColor
+        error ? errorTextColor : normalTextColor
     }
     
     public var body: some View {
