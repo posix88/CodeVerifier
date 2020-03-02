@@ -21,6 +21,15 @@ public struct CodeLabel: View {
     var normalTextColor: Color = .black
     var errorTextColor: Color = .black
     
+    var labelWidht: CGFloat = 20
+    var labelHeight: CGFloat = 30
+    
+    private var carrierHeight: CGFloat {
+        labelHeight - 5
+    }
+    
+    var carrierColor: Color = .black
+    
     private var lineColor: Color {
         error ? errorLineColor : normalLineColor
     }
@@ -32,11 +41,11 @@ public struct CodeLabel: View {
     public var body: some View {
         VStack(spacing: 5) {
             if !showCarrier {
-                Text(content).font(.body).fontWeight(.bold).foregroundColor(textColor).frame(width: 20, height: 30, alignment: .center)
-                Rectangle().frame(width: 20, height: lineWidth).foregroundColor(lineColor)
+                Text(content).font(.body).fontWeight(.bold).foregroundColor(textColor).frame(width: labelWidht, height: labelHeight, alignment: .center)
+                Rectangle().frame(width: labelWidht, height: lineWidth).foregroundColor(lineColor)
             } else {
-                Carrier(height: 25, color: .black)
-                Rectangle().frame(width: 20, height: lineWidth).foregroundColor(lineColor)
+                Carrier(height: carrierHeight, color: carrierColor)
+                Rectangle().frame(width: labelWidht, height: lineWidth).foregroundColor(lineColor)
             }
         }
     }
