@@ -42,11 +42,10 @@ public struct CodeLabel: View {
         VStack(spacing: 5) {
             if !showCarrier {
                 Text(content).font(.body).fontWeight(.bold).foregroundColor(textColor).frame(width: labelWidht, height: labelHeight, alignment: .center)
-                Rectangle().frame(width: labelWidht, height: lineWidth).foregroundColor(lineColor)
             } else {
                 Carrier(height: carrierHeight, color: carrierColor)
-                Rectangle().frame(width: labelWidht, height: lineWidth).foregroundColor(lineColor)
             }
+            Rectangle().frame(width: labelWidht, height: lineWidth).foregroundColor(lineColor)
         }
     }
 }
