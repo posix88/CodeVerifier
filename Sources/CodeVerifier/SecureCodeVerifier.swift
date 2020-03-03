@@ -8,8 +8,23 @@
 import SwiftUI
 
 struct SecureCodeVerifier: View {
+
+    @State private var secureCode: String = ""
+    
+    var fieldNumber: Int = 6
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            CustomTextField(text: $secureCode, isFirstResponder: true)
+            CodeView(fields: computeFields())
+        }.padding()
+    }
+    
+    private func computeFields() -> [CodeLabelState] {
+        if secureCode.count > 2 {
+            return [.empty, .empty]
+        }
+        return [.prompting]
     }
 }
 
