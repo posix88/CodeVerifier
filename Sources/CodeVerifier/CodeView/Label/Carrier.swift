@@ -9,6 +9,7 @@ import SwiftUI
 
 struct Carrier: View {
     @State private var blinking: Bool = false
+    
     var height: CGFloat = 25
     var color: Color = .black
     

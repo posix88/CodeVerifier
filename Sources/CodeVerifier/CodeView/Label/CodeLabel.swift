@@ -7,63 +7,20 @@
 
 import SwiftUI
 
-enum CodeLabelState: Identifiable {
-    var id: UUID {
-        UUID()
-    }
-    
-    case error(text: String)
-    case filled(text: String)
-    case empty
-    case prompting
-    
-    var textLabel: String {
-        switch self {
-        case .filled(text: let text), .error(text: let text):
-            return text
-        default:
-            return ""
-        }
-    }
-    
-    var showingError: Bool {
-        switch self {
-        case .error:
-            return true
-        default:
-            return false
-        }
-    }
-    
-    var prompting: Bool {
-        switch self {
-        case .prompting:
-            return true
-        default:
-            return false
-        }
-    }
-}
-
-public struct CodeLabel: View {
+struct CodeLabel: View {
     
     @State var labelState: CodeLabelState
     
+    // MARK: - Label dimension
     var lineWidth: CGFloat = 2
     
-    var normalLineColor: Color = .black
-    var errorLineColor: Color = .red
-    
-    var normalTextColor: Color = .black
-    var errorTextColor: Color = .black
-    
-    var labelWidht: CGFloat = 20
+    var labelWidth: CGFloat = 20
     var labelHeight: CGFloat = 30
     
-    private var carrierHeight: CGFloat {
-        labelHeight - 5
-    }
+    // MARK: - Carrier
+    var carrierHeight: CGFloat = 30
     
+    // MARK: - Colors
     var carrierColor: Color = .black
     
     private var lineColor: Color {
@@ -74,15 +31,21 @@ public struct CodeLabel: View {
         labelState.showingError ? errorTextColor : normalTextColor
     }
     
+    var normalLineColor: Color = .black
+    var errorLineColor: Color = .red
+    
+    var normalTextColor: Color = .black
+    var errorTextColor: Color = .black
+    
     public var body: some View {
         VStack(spacing: 5) {
             
             if !labelState.prompting {
-                Text(labelState.textLabel).font(.body).fontWeight(.bold).foregroundColor(textColor).frame(width: labelWidht, height: labelHeight, alignment: .center)
+                Text(labelState.textLabel).font(.body).fontWeight(.bold).foregroundColor(textColor).frame(width: labelWidth, height: labelHeight, alignment: .center)
             } else {
                 Carrier(height: carrierHeight, color: carrierColor)
             }
-            Rectangle().frame(width: labelWidht, height: lineWidth).foregroundColor(lineColor)
+            Rectangle().frame(width: labelWidth, height: lineWidth).foregroundColor(lineColor)
         }
     }
 }

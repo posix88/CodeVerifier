@@ -12,7 +12,6 @@ struct CodeView: View {
     @State var fields: [CodeLabelState]
     var spacing: CGFloat = 15
     
-    
     var body: some View {
         HStack(alignment: .bottom, spacing: spacing) {
             ForEach(fields) { labelState in
