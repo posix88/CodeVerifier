@@ -10,19 +10,29 @@ import SwiftUI
 struct SecureCodeVerifier: View {
 
     @State private var secureCode: String = ""
-    
+    private var fields: [CodeLabelState] {
+        computeFields()
+    }
     var fieldNumber: Int = 6
     
     var body: some View {
-        ZStack {
-            CustomTextField(text: $secureCode, isFirstResponder: true)
-            CodeView(fields: computeFields())
-        }.padding()
+        VStack{
+            ZStack {
+                CustomTextField(text: $secureCode, labels: fieldNumber, isFirstResponder: true)
+                CodeView(fields: fields)
+            }.padding()
+            Text("\(secureCode.count) \(computeFields().count)")
+        }
     }
     
     private func computeFields() -> [CodeLabelState] {
-        if secureCode.count > 2 {
+        // TODO: logic
+        if secureCode.count == 2 {
             return [.empty, .empty]
+        } else if secureCode.count > 2 {
+            return [.filled(text: "2"), .filled(text: "3")]
+        } else if secureCode.count == 1 {
+            return [.empty]
         }
         return [.prompting]
     }

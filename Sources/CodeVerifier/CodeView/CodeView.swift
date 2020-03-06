@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CodeView: View {
     
-    @State var fields: [CodeLabelState]
+    var fields: [CodeLabelState]
     var spacing: CGFloat = 15
     
     var body: some View {
