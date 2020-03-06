@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SecureCodeVerifier: View {
+public struct SecureCodeVerifier: View {
 
     @State private var secureCode: String = ""
     private var fields: [CodeLabelState] {
@@ -15,7 +15,11 @@ struct SecureCodeVerifier: View {
     }
     var fieldNumber: Int = 6
     
-    var body: some View {
+    public init(fields: Int = 6) {
+        fieldNumber = fields
+    }
+    
+    public var body: some View {
         VStack{
             ZStack {
                 CustomTextField(text: $secureCode, labels: fieldNumber, isFirstResponder: true)
