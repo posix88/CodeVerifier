@@ -20,10 +20,6 @@ struct CustomTextField: UIViewRepresentable {
             _text = text
             self.labels = labels
         }
-
-        func textFieldDidChangeSelection(_ textField: UITextField) {
-            text = textField.text ?? ""
-        }
         
         func textFieldShouldReturn(_ textField: UITextField) -> Bool {
             return false
@@ -36,27 +32,13 @@ struct CustomTextField: UIViewRepresentable {
             }
 
             // this is possible only if i've just pasted some text
-            if string.count > 1 {
-                self.text = "wow"
-                return true
+            if string.count > 1 && string.count > labels {
+                let index = string.index(string.startIndex, offsetBy: labels)
+                self.text = String(string.prefix(upTo: index))
+                return false
             }
             
             let newLength = text.count + string.count - range.length
-
-            // I'm adding characters into the textfield
-            if newLength <= labels && string.count > 0 {
-               // APPEND
-            }
-            // I'm deleting characters from the textfield
-            else if string.count == 0 {
-                if range.length > 1 {
-                    self.text = ""
-                } else if range.length == 1 {
-                    // REMOVE SINGLE
-                } else if range.length == 0 {
-                    return true
-                }
-            }
 
             return newLength <= labels
         }
@@ -70,6 +52,8 @@ struct CustomTextField: UIViewRepresentable {
         let textField = UITextField(frame: .zero)
         textField.delegate = context.coordinator
         textField.keyboardType = .numberPad
+        textField.textContentType = .oneTimeCode
+        textField.tintColor = .clear
         return textField
     }
 
