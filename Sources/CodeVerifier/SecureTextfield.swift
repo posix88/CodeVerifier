@@ -24,6 +24,10 @@ struct CustomTextField: UIViewRepresentable {
         func textFieldShouldReturn(_ textField: UITextField) -> Bool {
             return false
         }
+        
+        func textFieldDidChangeSelection(_ textField: UITextField) {
+            text = textField.text ?? ""
+        }
 
         public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
         {
@@ -34,12 +38,11 @@ struct CustomTextField: UIViewRepresentable {
             // this is possible only if i've just pasted some text
             if string.count > 1 && string.count > labels {
                 let index = string.index(string.startIndex, offsetBy: labels)
-                self.text = String(string.prefix(upTo: index))
+                textField.text = String(string.prefix(upTo: index))
                 return false
             }
             
             let newLength = text.count + string.count - range.length
-
             return newLength <= labels
         }
     }
@@ -68,4 +71,5 @@ struct CustomTextField: UIViewRepresentable {
             context.coordinator.didBecomeFirstResponder = true
         }
     }
+    
 }

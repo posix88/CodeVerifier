@@ -13,6 +13,7 @@ public struct SecureCodeVerifier: View {
     private var fields: [CodeLabelState] {
         computeFields()
     }
+    
     var fieldNumber: Int = 6
     
     public init(fields: Int = 6) {
@@ -23,22 +24,24 @@ public struct SecureCodeVerifier: View {
         VStack{
             ZStack {
                 CustomTextField(text: $secureCode, labels: fieldNumber, isFirstResponder: true)
+                Rectangle().foregroundColor(.white)
                 CodeView(fields: fields)
             }.padding()
-            Text("\(secureCode.count) \(computeFields().count)")
         }
     }
     
     private func computeFields() -> [CodeLabelState] {
-        // TODO: logic
-        if secureCode.count == 2 {
-            return [.empty, .empty]
-        } else if secureCode.count > 2 {
-            return [.filled(text: "2"), .filled(text: "3")]
-        } else if secureCode.count == 1 {
-            return [.empty]
+        guard !secureCode.isEmpty else {
+            let empty: [CodeLabelState] = Array(repeating: .empty, count: fieldNumber - 1)
+            return [.prompting] + empty
         }
-        return [.prompting]
+        let remainingLabel = fieldNumber - secureCode.count
+        let filledField = secureCode.map { CodeLabelState.filled(text: "\($0)") }
+        
+        guard remainingLabel > 0 else {
+            return filledField
+        }
+        return filledField + [.prompting] + Array(repeating: .empty, count: remainingLabel - 1)
     }
 }
 
