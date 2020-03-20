@@ -6,10 +6,18 @@
 //
 
 import SwiftUI
+import Combine
+
+class SecureCodeStatus: ObservableObject  {
+    @Published var secureCode: String = ""
+}
 
 public struct SecureCodeVerifier: View {
 
     @State private var secureCode: String = ""
+    
+    private var action: ((String) -> Void)?
+    
     private var fields: [CodeLabelState] {
         computeFields()
     }
@@ -18,6 +26,12 @@ public struct SecureCodeVerifier: View {
     
     public init(fields: Int = 6) {
         fieldNumber = fields
+    }
+    
+    public func onCodeFilled(perform action: ((String) -> Void)?) -> Self {
+      var copy = self
+      copy.action = action
+      return copy
     }
     
     public var body: some View {
@@ -39,14 +53,9 @@ public struct SecureCodeVerifier: View {
         let filledField = secureCode.map { CodeLabelState.filled(text: "\($0)") }
         
         guard remainingLabel > 0 else {
+            action?(secureCode)
             return filledField
         }
         return filledField + [.prompting] + Array(repeating: .empty, count: remainingLabel - 1)
-    }
-}
-
-struct SecureCodeVerifier_Previews: PreviewProvider {
-    static var previews: some View {
-        SecureCodeVerifier()
     }
 }

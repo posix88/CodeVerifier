@@ -34,12 +34,25 @@ struct CustomTextField: UIViewRepresentable {
             guard let text = textField.text else {
                 return true
             }
-
+        
+            guard string.isNumeric || string.count == 0 else { return false }
+            
             // this is possible only if i've just pasted some text
             if string.count > 1 && string.count > labels {
                 let index = string.index(string.startIndex, offsetBy: labels)
                 textField.text = String(string.prefix(upTo: index))
                 return false
+            } else if string.count == 0 {
+                if range.length > 1 {
+                    textField.text = ""
+                    return false
+                } else if range.length == 1 {
+                    let newString = textField.text?.dropLast()
+                    textField.text = String(newString ?? "")
+                    return false
+                } else if range.length == 0 {
+                    return true
+                }
             }
             
             let newLength = text.count + string.count - range.length
@@ -66,9 +79,8 @@ struct CustomTextField: UIViewRepresentable {
 
     func updateUIView(_ uiView: UITextField, context: UIViewRepresentableContext<CustomTextField>) {
         uiView.text = text
-        if isFirstResponder && !context.coordinator.didBecomeFirstResponder  {
+        if !uiView.isFirstResponder {
             uiView.becomeFirstResponder()
-            context.coordinator.didBecomeFirstResponder = true
         }
     }
     
