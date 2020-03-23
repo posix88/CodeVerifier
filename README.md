@@ -1,3 +1,7 @@
+[![@Ninomusolino](https://img.shields.io/badge/contact-@Ninomusolino-blue.svg?style=flat)](https://twitter.com/Ninomusolino)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/posix88/FasterVerificationCode/master/LICENSE)
+[![SPM](https://img.shields.io/badge/spm-compatible-brightgreen.svg?style=flat)](https://github.com/apple/swift-package-manager)
+
 # CodeVerifier
 
 An high customizable and fast verification code view, written in SwiftUI.
@@ -9,7 +13,17 @@ iOS 13.0 or above
 
 ## Installation
 
-// Will be shipped soon
+### Swift Package Manager
+
+The [Swift Package Manager](https://swift.org/package-manager/) is a tool for automating the distribution of Swift code and is integrated into `Xcode`.
+
+Once you have your Swift package set up, adding FasterVerificationCode as a dependency is very easy. You've just to add it to the `dependencies` value of your `Package.swift`.
+
+```swift
+dependencies: [
+    .package(url: "https://github.com/posix88/CodeVerifier")
+```
+or you can simply go to File -> Swift Packages -> Add Package Dependency and paste the repo's url: https://github.com/posix88/CodeVerifier
 
 ## Examples
 Using `CodeVerifier` is very easy and straightforward. Just create it inside your `body`passing as argument the code to be inserted by the user.
