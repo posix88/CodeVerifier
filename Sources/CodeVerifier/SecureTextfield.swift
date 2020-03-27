@@ -15,7 +15,6 @@ struct CustomTextField: UIViewRepresentable {
 
         @Binding var text: String
         var labels: Int
-        var didBecomeFirstResponder = false
 
         init(text: Binding<String>, labels: Int) {
             _text = text
@@ -64,6 +63,7 @@ struct CustomTextField: UIViewRepresentable {
     @Binding var text: String
     let labels: Int
     var isFirstResponder: Bool = false
+    
 
     func makeUIView(context: UIViewRepresentableContext<CustomTextField>) -> UITextField {
         let textField = UITextField(frame: .zero)
@@ -71,6 +71,7 @@ struct CustomTextField: UIViewRepresentable {
         textField.keyboardType = .numberPad
         textField.textContentType = .oneTimeCode
         textField.tintColor = .clear
+        textField.backgroundColor = .green
         return textField
     }
 
@@ -87,3 +88,9 @@ struct CustomTextField: UIViewRepresentable {
     
 }
 #endif
+
+struct SecureTextfield_Previews: PreviewProvider {
+    static var previews: some View {
+        CustomTextField(text: .constant(""), labels:  4).fixedSize(horizontal: false, vertical: true)
+    }
+}

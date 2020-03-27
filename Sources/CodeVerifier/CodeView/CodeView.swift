@@ -10,10 +10,10 @@ import SwiftUI
 struct CodeView: View {
     
     var fields: [CodeLabelState]
-    var spacing: CGFloat = 15
+    @EnvironmentObject var style: SecureCodeStyle
     
     var body: some View {
-        HStack(alignment: .bottom, spacing: spacing) {
+        HStack(alignment: .bottom, spacing: style.labelSpacing) {
             ForEach(fields) { labelState in
                 CodeLabel(labelState: labelState)
             }
@@ -23,7 +23,7 @@ struct CodeView: View {
 
 struct CodeView_Previews: PreviewProvider {
     static var previews: some View {
-        CodeView(fields: [.prompting, .empty, .empty, .empty, .empty])
+        CodeView(fields: [.prompting, .empty, .empty, .empty, .empty]).environmentObject(SecureCodeStyle())
     }
 }
 #endif

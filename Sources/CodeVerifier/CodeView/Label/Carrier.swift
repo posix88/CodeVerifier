@@ -10,8 +10,8 @@ import SwiftUI
 struct Carrier: View {
     @State private var blinking: Bool = false
     
-    var height: CGFloat = 25
-    var color: Color = .black
+    var height: CGFloat
+    var color: Color
     
     var body: some View {
         Rectangle()
@@ -26,7 +26,7 @@ struct Carrier: View {
 
 struct Carrier_Previews: PreviewProvider {
     static var previews: some View {
-        Carrier()
+        Carrier(height: 25, color: .green)
     }
 }
 #endif

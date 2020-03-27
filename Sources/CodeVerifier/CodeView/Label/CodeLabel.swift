@@ -10,18 +10,7 @@ import SwiftUI
 struct CodeLabel: View {
     
     @State var labelState: CodeLabelState
-    
-    // MARK: - Label dimension
-    var lineWidth: CGFloat = 2
-    
-    var labelWidth: CGFloat = 20
-    var labelHeight: CGFloat = 30
-    
-    // MARK: - Carrier
-    var carrierHeight: CGFloat = 30
-    
-    // MARK: - Colors
-    var carrierColor: Color = .black
+    @EnvironmentObject var style: SecureCodeStyle
     
     private var lineColor: Color {
         labelState.showingError ? errorLineColor : normalLineColor
@@ -38,14 +27,14 @@ struct CodeLabel: View {
     var errorTextColor: Color = .black
     
     public var body: some View {
-        VStack(spacing: 5) {
+        VStack(spacing: style.carrierSpacing) {
             
             if !labelState.prompting {
-                Text(labelState.textLabel).font(.body).fontWeight(.bold).foregroundColor(textColor).frame(width: labelWidth, height: labelHeight, alignment: .center)
+                Text(labelState.textLabel).font(.body).fontWeight(.bold).foregroundColor(textColor).frame(width: style.labelWidth, height: style.labelHeight, alignment: .center)
             } else {
-                Carrier(height: carrierHeight, color: carrierColor)
+                Carrier(height: style.carrierHeight, color: style.carrierColor)
             }
-            Rectangle().frame(width: labelWidth, height: lineWidth).foregroundColor(lineColor)
+            Rectangle().frame(width: style.lineWidth, height: style.lineHeight).foregroundColor(lineColor)
         }
     }
 }
@@ -56,7 +45,7 @@ struct CodeLabel_Previews: PreviewProvider {
             CodeLabel(labelState: .filled(text: "2"))
             CodeLabel(labelState: .prompting)
             CodeLabel(labelState: .error(text: "3"))
-        }
+        }.environmentObject(SecureCodeStyle())
     }
 }
 #endif
