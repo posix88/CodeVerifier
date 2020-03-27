@@ -4,7 +4,7 @@
 //
 //  Created by MUSOLINO Antonino on 03/03/2020.
 //
-
+#if canImport(UIKit) && (os(iOS) || targetEnvironment(macCatalyst))
 import SwiftUI
 
 public struct SecureCodeVerifier: View {
@@ -57,3 +57,4 @@ public struct SecureCodeVerifier: View {
         return filledField + [.prompting] + Array(repeating: .empty, count: remainingLabel - 1)
     }
 }
+#endif

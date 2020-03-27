@@ -22,6 +22,7 @@ Once you have your Swift package set up, adding FasterVerificationCode as a depe
 ```swift
 dependencies: [
     .package(url: "https://github.com/posix88/CodeVerifier")
+    ]
 ```
 or you can simply go to File -> Swift Packages -> Add Package Dependency and paste the repo's url: https://github.com/posix88/CodeVerifier
 

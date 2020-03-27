@@ -4,7 +4,7 @@
 //
 //  Created by MUSOLINO Antonino on 28/02/2020.
 //
-
+#if canImport(UIKit) && (os(iOS) || targetEnvironment(macCatalyst))
 import SwiftUI
 
 struct CodeLabel: View {
@@ -59,3 +59,4 @@ struct CodeLabel_Previews: PreviewProvider {
         }
     }
 }
+#endif

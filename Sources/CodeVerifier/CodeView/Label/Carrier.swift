@@ -4,7 +4,7 @@
 //
 //  Created by MUSOLINO Antonino on 28/02/2020.
 //
-
+#if canImport(UIKit) && (os(iOS) || targetEnvironment(macCatalyst))
 import SwiftUI
 
 struct Carrier: View {
@@ -29,3 +29,4 @@ struct Carrier_Previews: PreviewProvider {
         Carrier()
     }
 }
+#endif

@@ -4,7 +4,7 @@
 //
 //  Created by MUSOLINO Antonino on 02/03/2020.
 //
-
+#if canImport(UIKit) && (os(iOS) || targetEnvironment(macCatalyst))
 import SwiftUI
 
 struct CodeView: View {
@@ -26,3 +26,4 @@ struct CodeView_Previews: PreviewProvider {
         CodeView(fields: [.prompting, .empty, .empty, .empty, .empty])
     }
 }
+#endif
