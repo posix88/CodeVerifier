@@ -10,7 +10,7 @@ import SwiftUI
 public struct SecureCodeVerifier: View {
     
     @State private var insertedCode: String = ""
-    @EnvironmentObject var style: SecureCodeStyle
+    @State private var style: SecureCodeStyle = Styles.defaultStyle
     
     private let secureCode: String
     private var action: ((Bool) -> Void)?
@@ -24,7 +24,7 @@ public struct SecureCodeVerifier: View {
     
     private var textfieldSize: CGSize {
         let height = style.labelHeight + style.lineHeight + style.carrierSpacing
-        let width = (style.labelWidth * CGFloat(fieldNumber)) + style.labelSpacing
+        let width = (style.labelWidth * CGFloat(fieldNumber)) + (style.labelSpacing * CGFloat(fieldNumber - 1))
         return CGSize(width: width, height: height)
     }
     
@@ -32,18 +32,12 @@ public struct SecureCodeVerifier: View {
         self.secureCode = code
     }
     
-    public func onCodeFilled(perform action: ((Bool) -> Void)?) -> Self {
-        var copy = self
-        copy.action = action
-        return copy
-    }
-    
     public var body: some View {
         VStack{
             ZStack {
                 CustomTextField(text: $insertedCode, labels: fieldNumber, isFirstResponder: true).frame(width: textfieldSize.width, height: textfieldSize.height)
                 Rectangle().frame(width: textfieldSize.width, height: textfieldSize.height).foregroundColor(.white)
-                CodeView(fields: fields)
+                CodeView(fields: fields, style: self.style)
             }.padding()
         }
     }
@@ -65,9 +59,23 @@ public struct SecureCodeVerifier: View {
     }
 }
 
+extension SecureCodeVerifier {
+    public func onCodeFilled(perform action: ((Bool) -> Void)?) -> Self {
+        var copy = self
+        copy.action = action
+        return copy
+    }
+    
+    public func withStyle(_ style: SecureCodeStyle) -> Self {
+        let copy = self
+        copy.style = style
+        return copy
+    }
+}
+
 struct SecureCodeVerifier_Previews: PreviewProvider {
     static var previews: some View {
-        SecureCodeVerifier(code: "123456").environmentObject(SecureCodeStyle())
+        SecureCodeVerifier(code: "123456")
     }
 }
 #endif

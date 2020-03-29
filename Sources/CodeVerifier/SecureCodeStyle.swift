@@ -8,30 +8,41 @@
 import SwiftUI
 import Combine
 
-public class SecureCodeStyle: ObservableObject {
+public struct Styles {
+    
+    public static let defaultStyle = SecureCodeStyle(lineWidth: 20, lineHeight: 2, normalLineColor: .black, errorLineColor: .red, labelWidth: 20, labelHeight: 30, labelSpacing: 15, normalTextColor: .black, errorTextColor: .black, carrierHeight: 30, carrierSpacing: 5, carrierColor: .black)
+}
+
+public class SecureCodeStyle {
 
     // MARK: - Bottom Line dimension
-    var lineWidth: CGFloat = 20
-    var lineHeight: CGFloat = 2
+    var lineWidth: CGFloat
+    var lineHeight: CGFloat
+    var normalLineColor: Color
+    var errorLineColor: Color
     
     // MARK: - Code Label dimension
-    var labelWidth: CGFloat = 20
-    var labelHeight: CGFloat = 30
-    var labelSpacing: CGFloat = 15
+    var labelWidth: CGFloat
+    var labelHeight: CGFloat
+    var labelSpacing: CGFloat
+    var normalTextColor: Color
+    var errorTextColor: Color
     
     // MARK: - Carrier
-    var carrierHeight: CGFloat = 30
-    var carrierSpacing: CGFloat = 5
+    var carrierHeight: CGFloat
+    var carrierSpacing: CGFloat
+    var carrierColor: Color
     
-    // MARK: - Colors
-    var carrierColor: Color = .black
-    
-    public init(lineWidth: CGFloat = 20, lineHeight: CGFloat = 2, labelWidth: CGFloat = 20, labelHeight: CGFloat = 30, labelSpacing: CGFloat = 15, carrierHeight: CGFloat = 30, carrierSpacing: CGFloat = 5, carrierColor: Color = .black) {
+    public init(lineWidth: CGFloat, lineHeight: CGFloat, normalLineColor: Color, errorLineColor: Color, labelWidth: CGFloat, labelHeight: CGFloat, labelSpacing: CGFloat, normalTextColor: Color, errorTextColor: Color, carrierHeight: CGFloat, carrierSpacing: CGFloat, carrierColor: Color) {
         self.lineWidth = lineWidth
         self.lineHeight = lineHeight
+        self.normalLineColor = normalLineColor
+        self.errorLineColor = errorLineColor
         self.labelWidth = labelWidth
         self.labelHeight = labelHeight
         self.labelSpacing = labelSpacing
+        self.normalTextColor = normalTextColor
+        self.errorTextColor = errorTextColor
         self.carrierColor = carrierColor
         self.carrierHeight = carrierHeight
         self.carrierSpacing = carrierSpacing
