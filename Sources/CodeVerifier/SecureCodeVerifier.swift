@@ -11,6 +11,7 @@ public struct SecureCodeVerifier: View {
     
     @State private var insertedCode: String = ""
     @State private var style: SecureCodeStyle = Styles.defaultStyle
+    @State private var isTextFieldFocused: Bool = false
     
     private let secureCode: String
     private var action: ((Bool) -> Void)?
@@ -35,10 +36,12 @@ public struct SecureCodeVerifier: View {
     public var body: some View {
         VStack{
             ZStack {
-                CustomTextField(text: $insertedCode, labels: fieldNumber, isFirstResponder: true).frame(width: textfieldSize.width, height: textfieldSize.height)
-                Rectangle().frame(width: textfieldSize.width, height: textfieldSize.height).foregroundColor(.white)
+                CustomTextField(text: $insertedCode, isFocusable: $isTextFieldFocused, labels: fieldNumber).frame(width: textfieldSize.width, height: textfieldSize.height)
+                Rectangle().frame(width: textfieldSize.width, height: textfieldSize.height).foregroundColor(.white).onTapGesture {
+                    self.isTextFieldFocused.toggle()
+                }
                 CodeView(fields: fields, style: self.style)
-            }.padding()
+            }.padding().keyboardAdaptive()
         }
     }
     

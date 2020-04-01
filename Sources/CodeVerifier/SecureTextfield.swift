@@ -22,11 +22,13 @@ struct CustomTextField: UIViewRepresentable {
         }
         
         func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-            return false
+            return true
         }
         
         func textFieldDidChangeSelection(_ textField: UITextField) {
-            text = textField.text ?? ""
+            DispatchQueue.main.async {
+                self.text = textField.text ?? ""
+            }
         }
 
         public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
@@ -61,8 +63,8 @@ struct CustomTextField: UIViewRepresentable {
     }
 
     @Binding var text: String
+    @Binding var isFocusable: Bool
     let labels: Int
-    var isFirstResponder: Bool = false
     
 
     func makeUIView(context: UIViewRepresentableContext<CustomTextField>) -> UITextField {
@@ -81,8 +83,12 @@ struct CustomTextField: UIViewRepresentable {
 
     func updateUIView(_ uiView: UITextField, context: UIViewRepresentableContext<CustomTextField>) {
         uiView.text = text
-        if !uiView.isFirstResponder {
-            uiView.becomeFirstResponder()
+        if isFocusable {
+            if !uiView.isFirstResponder {
+                uiView.becomeFirstResponder()
+            }
+        } else {
+            uiView.resignFirstResponder()
         }
     }
     
@@ -91,6 +97,6 @@ struct CustomTextField: UIViewRepresentable {
 
 struct SecureTextfield_Previews: PreviewProvider {
     static var previews: some View {
-        CustomTextField(text: .constant(""), labels:  4).fixedSize(horizontal: false, vertical: true)
+        CustomTextField(text: .constant(""), isFocusable: .constant(true), labels:  4).fixedSize(horizontal: false, vertical: true)
     }
 }
