@@ -3,7 +3,7 @@
 [![@Ninomusolino](https://img.shields.io/badge/contact-@Ninomusolino-blue.svg?style=flat)](https://twitter.com/Ninomusolino)
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/posix88/FasterVerificationCode/master/CodeVerifier.gif" alt="Icon"/>
+<img src="https://raw.githubusercontent.com/posix88/CodeVerifier/master/CodeVerifier.gif" alt="Icon"/>
 </p>
 
 # CodeVerifier 
