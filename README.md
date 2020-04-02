@@ -1,12 +1,18 @@
-[![@Ninomusolino](https://img.shields.io/badge/contact-@Ninomusolino-blue.svg?style=flat)](https://twitter.com/Ninomusolino)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/posix88/FasterVerificationCode/master/LICENSE)
 [![SPM](https://img.shields.io/badge/spm-compatible-brightgreen.svg?style=flat)](https://github.com/apple/swift-package-manager)
+[![@Ninomusolino](https://img.shields.io/badge/contact-@Ninomusolino-blue.svg?style=flat)](https://twitter.com/Ninomusolino)
 
-# CodeVerifier
+<p align="center">
+<img src="https://raw.githubusercontent.com/posix88/FasterVerificationCode/master/CodeVerifier.gif" alt="Icon"/>
+</p>
+
+# CodeVerifier 
 
 An high customizable and fast verification code view, written in SwiftUI.
 
 `CodeVerifier` is an open-source fully customizable `input view`  built to makes easier and faster the input of a verification code you provided to your users via mail/phone. 
+
+⚠️ Keep in mind that this project is still in development but every contribution is welcome 👨‍💻 ⚠️
 
 ## System Requirements
 iOS 13.0 or above
@@ -29,8 +35,8 @@ or you can simply go to File -> Swift Packages -> Add Package Dependency and pas
 ## Examples
 Using `CodeVerifier` is very easy and straightforward. Just create it inside your `body`passing as argument the code to be inserted by the user.
 
-You can customize the appearance of the code verifier during initialization. 
-
+You can customize the appearance of the code verifier during initialization using its modifier and the `SecureCodeStyle` class.
+ 
 ### Basic Implementation
 
 ```swift
@@ -38,9 +44,21 @@ You can customize the appearance of the code verifier during initialization.
         SecureCodeVerifier(code: *your code*)
             .onCodeFilled { isCodeCorrect in
                 
-            }
+            }.withStyle(Styles.defaultStyle)
     }
 ```
+
+### Customization
+
+You can create your own style creating a new `defaultStyle`
+
+```swift
+  var myStyle: SecureCodeStyle {
+        SecureCodeStyle(lineWidth: 20, lineHeight: 2, normalLineColor: .black, errorLineColor: .red, labelWidth: 20, labelHeight: 30, labelSpacing: 15, normalTextColor: .black, errorTextColor: .black, carrierHeight: 30, carrierSpacing: 5, carrierColor: .black)
+    }
+```
+
+DarkMode will be supported in the future. 
 
 ## Contributing
 
