@@ -4,7 +4,7 @@
 //
 //  Created by MUSOLINO Antonino on 03/03/2020.
 //
-#if canImport(UIKit) && (os(iOS) || targetEnvironment(macCatalyst))
+#if canImport(SwiftUI) && (os(iOS) || targetEnvironment(macCatalyst))
 import SwiftUI
 
 public struct SecureCodeVerifier: View {
@@ -34,15 +34,13 @@ public struct SecureCodeVerifier: View {
     }
     
     public var body: some View {
-        VStack{
             ZStack {
                 CustomTextField(text: $insertedCode, isFocusable: $isTextFieldFocused, labels: fieldNumber).frame(width: textfieldSize.width, height: textfieldSize.height)
                 Rectangle().frame(width: textfieldSize.width, height: textfieldSize.height).foregroundColor(.white).onTapGesture {
                     self.isTextFieldFocused.toggle()
                 }
                 CodeView(fields: fields, style: self.style)
-            }.padding().keyboardAdaptive()
-        }
+                }.padding().keyboardAdaptive()
     }
     
     private func computeFields() -> [CodeLabelState] {

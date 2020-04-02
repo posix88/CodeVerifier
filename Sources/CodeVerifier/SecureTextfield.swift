@@ -73,7 +73,6 @@ struct CustomTextField: UIViewRepresentable {
         textField.keyboardType = .numberPad
         textField.textContentType = .oneTimeCode
         textField.tintColor = .clear
-        textField.backgroundColor = .green
         return textField
     }
 
