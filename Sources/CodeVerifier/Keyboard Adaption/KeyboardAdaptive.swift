@@ -14,17 +14,13 @@ struct KeyboardAdaptive: ViewModifier {
     func body(content: Content) -> some View {
         let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow })
         let windowHeight = window?.bounds.height ?? 0
-        let bottomSafeArea = window?.safeAreaInsets.bottom ?? 0
         return content
                 .padding(.bottom, self.bottomPadding)
                 .onReceive(Publishers.keyboardHeight) { keyboardHeight in
                     let keyboardTop = windowHeight - keyboardHeight
                     let focusedInputBottom = UIResponder.currentFirstResponder?.globalFrame?.maxY ?? 0
-                    self.bottomPadding = max(0, focusedInputBottom - keyboardTop - bottomSafeArea)
-                    print(keyboardHeight)
-                    print(keyboardTop)
-                    print(focusedInputBottom)
-                    print(self.bottomPadding)
+                    let textfieldHeight = UIResponder.currentFirstResponder?.globalFrame?.height ?? 0
+                    self.bottomPadding = max(0, focusedInputBottom - keyboardTop + textfieldHeight)
                 }.animation(.easeOut(duration: 0.16))
     }
 }
