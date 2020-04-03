@@ -65,7 +65,6 @@ struct CustomTextField: UIViewRepresentable {
     @Binding var text: String
     @Binding var isFocusable: Bool
     let labels: Int
-    
 
     func makeUIView(context: UIViewRepresentableContext<CustomTextField>) -> UITextField {
         let textField = UITextField(frame: .zero)
@@ -73,6 +72,7 @@ struct CustomTextField: UIViewRepresentable {
         textField.keyboardType = .numberPad
         textField.textContentType = .oneTimeCode
         textField.tintColor = .clear
+        textField.isSecureTextEntry = true
         return textField
     }
 
