@@ -17,7 +17,9 @@ iOS 13.0 or above
 
 ## Features
 ✅ Embed a Textfield with semantic intent .oneTimeCode 
+
 ✅ Full customizable style
+
 ✅ Keyboard aware
 
 ## Next Step
