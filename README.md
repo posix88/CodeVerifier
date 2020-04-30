@@ -1,12 +1,30 @@
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/posix88/FasterVerificationCode/master/LICENSE)
-[![SPM](https://img.shields.io/badge/spm-compatible-brightgreen.svg?style=flat)](https://github.com/apple/swift-package-manager)
-[![@Ninomusolino](https://img.shields.io/badge/contact-@Ninomusolino-blue.svg?style=flat)](https://twitter.com/Ninomusolino)
+# CodeVerifier
 
+<p align="center">
+    <a href="#">
+        <img src="https://img.shields.io/badge/swift-5.1-orange.svg" alt="Swift: 5.1">
+    </a>
+    <a href="https://github.com/posix88/CodeVerifier/releases">
+        <img src="https://img.shields.io/badge/version-0.1.0-blue.svg"
+        alt="Version: 0.1.0">
+    </a>
+    <a href="#">
+    <img src="https://img.shields.io/badge/Platforms-iOS%20|%20tvOS%20|%20watchOS|%20macOS-green.svg"
+        alt="Platforms: iOS – tvOS – watchOS - macOS">
+    </a>
+    <a href="https://github.com/posix88/CodeVerifier/blob/stable/LICENSE.md">
+        <img src="https://img.shields.io/badge/license-MIT-lightgrey.svg" alt="License: MIT">
+    </a>
+    <br />
+    <a href="https://github.com/apple/swift-package-manager">
+        <img src="https://img.shields.io/badge/SwiftPM-compatible-brightgreen.svg" alt="SwiftPM: Compatible">
+    </a>
+</p>
 <p align="center">
 <img src="https://raw.githubusercontent.com/posix88/CodeVerifier/master/CodeVerifier.gif" alt="Icon"/>
 </p>
 
-# CodeVerifier 
+ 
 
 An high customizable and fast verification code view, written in SwiftUI.
 
