@@ -4,9 +4,8 @@
 //
 //  Created by MUSOLINO Antonino on 27/03/2020.
 //
-#if canImport(UIKit) && (os(iOS) || targetEnvironment(macCatalyst))
+
 import SwiftUI
-import Combine
 
 public struct Styles {
     
@@ -48,4 +47,4 @@ public class SecureCodeStyle {
         self.carrierSpacing = carrierSpacing
     }
 }
-#endif
+

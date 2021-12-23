@@ -31,7 +31,7 @@ An high customizable and fast verification code view, written in SwiftUI.
 `CodeVerifier` is an open-source fully customizable `input view`  built to makes easier and faster the input of a verification code you provided to your users via mail/phone. 
 
 ## System Requirements
-iOS 13.0 or above
+iOS 14.0 or above
 
 ## Features
 ✅ Embed a Textfield with semantic intent .oneTimeCode 
@@ -70,7 +70,7 @@ You can customize the appearance of the code verifier during initialization usin
         SecureCodeVerifier(code: *your code*)
             .onCodeFilled { isCodeCorrect in
                 
-            }.withStyle(Styles.defaultStyle)
+            }
     }
 ```
 

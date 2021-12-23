@@ -1,10 +1,4 @@
-//
-//  Carrier.swift
-//  CodeVerifier
-//
-//  Created by MUSOLINO Antonino on 28/02/2020.
-//
-#if canImport(UIKit) && (os(iOS) || targetEnvironment(macCatalyst))
+
 import SwiftUI
 
 struct Carrier: View {
@@ -17,10 +11,11 @@ struct Carrier: View {
         Rectangle()
             .frame(width: 1.5, height: height, alignment: .center)
             .foregroundColor(color)
-            .opacity(blinking ? 0 : 1).animation(Animation.easeInOut(duration: 0.8).repeatForever(autoreverses: true))
+            .opacity(blinking ? 0 : 1)
+            .animation(.easeInOut(duration: 0.8).repeatForever(autoreverses: true), value: blinking)
             .onAppear {
-                self.blinking.toggle()
-        }
+                blinking.toggle()
+            }
     }
 }
 
@@ -29,4 +24,4 @@ struct Carrier_Previews: PreviewProvider {
         Carrier(height: 25, color: .green)
     }
 }
-#endif
+

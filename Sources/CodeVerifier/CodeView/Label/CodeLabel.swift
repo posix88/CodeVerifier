@@ -1,16 +1,9 @@
-//
-//  File.swift
-//  
-//
-//  Created by MUSOLINO Antonino on 28/02/2020.
-//
-#if canImport(UIKit) && (os(iOS) || targetEnvironment(macCatalyst))
 import SwiftUI
 
 struct CodeLabel: View {
     
-    @State var labelState: CodeLabelState
-    @State var style: SecureCodeStyle
+    let labelState: CodeLabelState
+    let style: SecureCodeStyle
     
     private var lineColor: Color {
         labelState.showingError ? style.errorLineColor : style.normalLineColor
@@ -23,11 +16,17 @@ struct CodeLabel: View {
     public var body: some View {
         VStack(spacing: style.carrierSpacing) {
             if !labelState.prompting {
-                Text(labelState.textLabel).font(.body).fontWeight(.bold).foregroundColor(textColor).frame(width: style.labelWidth, height: style.labelHeight, alignment: .center)
+                Text(labelState.textLabel)
+                    .font(.body)
+                    .fontWeight(.bold)
+                    .foregroundColor(textColor)
+                    .frame(width: style.labelWidth, height: style.labelHeight, alignment: .center)
             } else {
                 Carrier(height: style.carrierHeight, color: style.carrierColor)
             }
-            Rectangle().frame(width: style.lineWidth, height: style.lineHeight).foregroundColor(lineColor)
+            Rectangle()
+                .frame(width: style.lineWidth, height: style.lineHeight)
+                .foregroundColor(lineColor)
         }
     }
 }
@@ -41,4 +40,3 @@ struct CodeLabel_Previews: PreviewProvider {
         }
     }
 }
-#endif

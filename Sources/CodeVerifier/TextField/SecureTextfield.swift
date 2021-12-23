@@ -5,7 +5,6 @@
 //  Created by MUSOLINO Antonino on 03/03/2020.
 //
 
-#if canImport(UIKit) && (os(iOS) || targetEnvironment(macCatalyst))
 import SwiftUI
 import UIKit
 
@@ -92,7 +91,6 @@ struct CustomTextField: UIViewRepresentable {
     }
     
 }
-#endif
 
 struct SecureTextfield_Previews: PreviewProvider {
     static var previews: some View {
