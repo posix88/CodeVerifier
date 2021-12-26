@@ -11,6 +11,7 @@ struct Carrier: View {
         Rectangle()
             .frame(width: 1.5, height: height, alignment: .center)
             .foregroundColor(color)
+            .animation(nil, value: blinking)
             .opacity(blinking ? 0 : 1)
             .animation(.easeInOut(duration: 0.8).repeatForever(autoreverses: true), value: blinking)
             .onAppear {

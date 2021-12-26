@@ -6,15 +6,16 @@
 //
 import SwiftUI
 
+/// Represents the list of all secure code fields
 struct CodeView: View {
+    @Environment(\.secureCodeStyle) var style: SecureCodeStyle
     
     var fields: [CodeLabelState]
-    let style: SecureCodeStyle
     
     var body: some View {
         HStack(alignment: .bottom, spacing: style.labelSpacing) {
             ForEach(fields) { labelState in
-                CodeLabel(labelState: labelState, style: style)
+                CodeLabel(state: labelState)
             }
         }
     }
@@ -23,10 +24,9 @@ struct CodeView: View {
 struct CodeView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            CodeView(fields: [.prompting, .empty, .empty, .empty, .empty], style: Styles.defaultStyle)
-            CodeView(fields: [.prompting, .empty, .empty, .empty, .empty], style: Styles.defaultStyle)
+            CodeView(fields: [.prompting, .empty, .empty, .empty, .empty])
+            CodeView(fields: [.prompting, .empty, .empty, .empty, .empty])
                 .environment(\.colorScheme, .dark)
         }
-        
     }
 }
