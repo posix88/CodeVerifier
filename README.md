@@ -76,7 +76,7 @@ You can customize the appearance of the code verifier during initialization usin
 
 ### Customization
 
-You can create your own style creating a new `defaultStyle`
+You can create your own style creating a new `SecureCodeStyle`
 
 ```swift
   var myStyle: SecureCodeStyle {
@@ -84,7 +84,15 @@ You can create your own style creating a new `defaultStyle`
     }
 ```
 
-DarkMode will be supported in the future. 
+Inject the new style as key / environment variable, on your view
+
+```swift
+  SecureCodeVerifier(code: vm.verificationCode)
+                .onCodeFilled { isCodeCorrect in
+                    print("Hello")
+                }
+                .environment(\.secureCodeStyle, myStyle)
+```
 
 ## Contributing
 
